@@ -106,10 +106,10 @@ function styleActiveBoard(boardName) {
   document.querySelectorAll('.board-btn').forEach(btn => { // Fixed the camelCase foreach bug
     
     if(btn.textContent === boardName) {
-      btn.add('active') 
+      btn.classList.add('active')     // Functions should be used on the classList property of btn
     }
     else {
-      btn.remove('active'); 
+      btn.classList.remove('active'); 
     }
   });
 }
