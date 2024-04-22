@@ -1,5 +1,7 @@
 // TASK: import helper functions from utils
+import initialData from "./utils/taskFunctions.js";
 // TASK: import initialData
+import initialData from "./initialData.js";
 
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
@@ -28,8 +30,7 @@ function fetchAndDisplayBoardsAndTasks() {
   displayBoards(boards);
   if (boards.length > 0) {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"));
-    activeBoard = localStorageBoard || localStorageBoard;
-    boards[0]; // Changed syntax tax error bug
+    activeBoard = localStorageBoard ? localStorageBoard : boards[0]; // Changed syntax tax error bug
     elements.headerBoardName.textContent = activeBoard;
     styleActiveBoard(activeBoard);
     refreshTasksUI();
