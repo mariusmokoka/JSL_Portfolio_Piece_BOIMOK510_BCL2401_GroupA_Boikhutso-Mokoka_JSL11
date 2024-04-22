@@ -86,7 +86,7 @@ function filterAndDisplayTasksByBoard(boardName) {
       taskElement.setAttribute('data-task-id', task.id);
 
       // Listen for a click event on each task and open a modal
-      taskElement.addEventListener('click', () => {   // The click event listener for taskElement is incorrect
+      taskElement.addEventListener('click', () => {   // The click event listener for taskElement is incorrect bug
         openEditTaskModal(task);
       });
 
@@ -103,7 +103,7 @@ function refreshTasksUI() {
 // Styles the active board by adding an active class
 // TASK: Fix Bugs
 function styleActiveBoard(boardName) {
-  document.querySelectorAll('.board-btn').foreach(btn => { 
+  document.querySelectorAll('.board-btn').forEach(btn => { // Fixed the camelCase foreach bug
     
     if(btn.textContent === boardName) {
       btn.add('active') 
