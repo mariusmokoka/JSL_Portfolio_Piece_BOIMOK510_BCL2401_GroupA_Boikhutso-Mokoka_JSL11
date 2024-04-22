@@ -18,7 +18,17 @@ function initializeData() {
 }
 
 // TASK: Get elements from the DOM
-const elements = {};
+const elements = {
+  headerBoardName: getElementById("header-board-name"),
+  columnDivs: querySelector("column-div"),
+  editTaskModal: getElementById("edit-task-modal-window"),
+  filterDiv: getElementById("filterDiv"),
+  hideSideBarBtn: getElementById("hide-side-bar-div"),
+  showSideBarBtn: getElementById("show-side-bar-btn"),
+  themeSwitch: getElementById("switch"),
+  createNewTaskBtn: getElementById("create-task-btn"),
+  modalWindow: getElementById("new-task-modal-window"),
+};
 
 let activeBoard = "";
 
@@ -31,7 +41,7 @@ function fetchAndDisplayBoardsAndTasks() {
   if (boards.length > 0) {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"));
     activeBoard = localStorageBoard ? localStorageBoard : boards[0]; // Changed syntax tax error bug
-    elements.headerBoardName.textContent = activeBoard;
+    elements.headerBoardName.textContent = activeBoard; // DOM
     styleActiveBoard(activeBoard);
     refreshTasksUI();
   }
@@ -67,6 +77,7 @@ function filterAndDisplayTasksByBoard(boardName) {
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
   elements.columnDivs.forEach((column) => {
+    //DOM
     const status = column.getAttribute("data-status");
     // Reset column content while preserving the column title
     column.innerHTML = `<div class="column-head-div">
