@@ -221,7 +221,15 @@ function addTask(event) {
   }
 }
 
-function toggleSidebar(show) {}
+function toggleSidebar(show) {
+  const sideBar = document.getElementById("side-bar-div"); // Get the sidebar element
+
+  if (show) {
+    sideBar.style.display = "block"; // Show the sidebar
+  } else {
+    sideBar.style.display = "none"; // Hide the sidebar
+  }
+}
 
 function toggleTheme() {}
 
