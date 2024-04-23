@@ -1,7 +1,11 @@
 // TASK: import helper functions from utils
-import initialData from "./utils/taskFunctions.js";
-// TASK: import initialData
-import initialData from "./initialData.js";
+import {
+  getTasks,
+  createNewTask,
+  putTask,
+  deleteTask,
+} from "./utils/taskFunctions.js";
+import { initialData } from "./initialData.js";
 
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
@@ -19,15 +23,15 @@ function initializeData() {
 
 // TASK: Get elements from the DOM
 const elements = {
-  headerBoardName: getElementById("header-board-name"),
-  columnDivs: querySelector("column-div"),
-  editTaskModal: getElementById("edit-task-modal-window"),
-  filterDiv: getElementById("filterDiv"),
-  hideSideBarBtn: getElementById("hide-side-bar-div"),
-  showSideBarBtn: getElementById("show-side-bar-btn"),
-  themeSwitch: getElementById("switch"),
-  createNewTaskBtn: getElementById("create-task-btn"),
-  modalWindow: getElementById("new-task-modal-window"),
+  headerBoardName: document.getElementById("header-board-name"),
+  columnDivs: document.querySelectorAll(".column-div"),
+  filterDiv: document.getElementById("filterDiv"),
+  hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
+  showSideBarBtn: document.getElementById("show-side-bar-btn"),
+  themeSwitch: document.getElementById("switch"),
+  createNewTaskBtn: document.getElementById("create-task-btn"),
+  modalWindow: document.querySelector(".modal-window"),
+  editTaskModal: document.querySelector(".edit-task-modal-window"),
 };
 
 let activeBoard = "";
@@ -67,6 +71,11 @@ function displayBoards(boards) {
     boardsContainer.appendChild(boardElement);
   });
 }
+const colTitles = {
+  todo: "todo",
+  doing: "doing",
+  done: "done",
+};
 
 // Filters tasks corresponding to the board name and displays them on the DOM.
 // TASK: Fix Bugs
