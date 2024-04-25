@@ -24,6 +24,7 @@ function initializeData() {
     console.log("Data already exists in localStorage");
   }
 }
+initializeData();
 
 // TASK: Get elements from the DOM
 const elements = {
@@ -46,6 +47,7 @@ function fetchAndDisplayBoardsAndTasks() {
   const tasks = getTasks();
   const boards = [...new Set(tasks.map((task) => task.board).filter(Boolean))];
   displayBoards(boards);
+  console.log(boards);
   if (boards.length > 0) {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"));
     activeBoard = localStorageBoard ? localStorageBoard : boards[0];
@@ -227,26 +229,15 @@ function addTask(event) {
 
 function toggleSidebar(show) {
   const showSideBarBtn = document.getElementById("show-side-bar-btn");
-
-  showSideBarBtn.addEventListener("click", () => {
-    const sideBar = document.getElementById("side-bar-div");
-    sideBar.style.display = show ? "block" : "none";
-    showSideBarBtn.style.display = show ? "none" : "block";
-  });
-
-  const hideSideBarBtn = document.getElementById("hide-side-bar-btn");
-
-  hideSideBarBtn.addEventListener("click", () => {
-    const sideBar = document.getElementById("side-bar-div");
-    sideBar.style.display = show ? "block" : "none";
-    showSideBarBtn.style.display = show ? "none" : "block";
-  });
+  const sideBar = document.getElementById("side-bar-div");
+  sideBar.style.display = show ? "block" : "none";
+  showSideBarBtn.style.display = show ? "none" : "block";
 }
 
 function toggleTheme() {
   const isLightTheme = document.body.classList.contains("light-theme");
   document.body.classList.toggle("light-theme");
-  localStorage.setItem("light-theme", isLightTheme ? "enabled" : "disabled");
+  localStorage.setItem("light-theme", isLightTheme ? "disabled" : "enabled");
 }
 
 function openEditTaskModal(task) {
@@ -261,11 +252,6 @@ function openEditTaskModal(task) {
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
 
-  // const SelectStatus = editSelectStatus.querySelector(
-  //   `Option[value = "${task.status}"]`
-  // );
-  // SelectStatus.selcted = true;
-
   // Get button elements from the task modal
   const saveTasksBtn = document.getElementById("save-task-changes-btn");
   const deleteTaskBtn = document.getElementById("delete-task-btn");
@@ -273,6 +259,8 @@ function openEditTaskModal(task) {
   // Call saveTaskChanges upon click of Save Changes button
   saveTasksBtn.addEventListener("click", () => {
     saveTaskChanges(task.id);
+    toggleModal(false, elements.editTaskModal);
+    refreshTasksUI();
   });
   // Delete task using a helper function and close the task modal
   deleteTaskBtn.addEventListener("click", () => {
@@ -314,7 +302,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function init() {
-  initializeData();
   setupEventListeners();
   const showSidebar = localStorage.getItem("showSideBar") === "true";
   elements.showSideBarBtn.style.display = showSidebar ? "block" : "none";
