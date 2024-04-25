@@ -259,6 +259,8 @@ function openEditTaskModal(task) {
   editTaskDescInput.value = task.description;
   editSelectStatus.value = task.status;
 
+  toggleModal(true, elements.editTaskModal); // Show the edit task modal
+
   // const SelectStatus = editSelectStatus.querySelector(
   //   `Option[value = "${task.status}"]`
   // );
@@ -275,9 +277,9 @@ function openEditTaskModal(task) {
   // Delete task using a helper function and close the task modal
   deleteTaskBtn.addEventListener("click", () => {
     deleteTask(task.id);
+    toggleModal(false, elements.editTaskModal);
+    refreshTasksUI();
   });
-
-  toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
 
 function saveTaskChanges(taskId) {
