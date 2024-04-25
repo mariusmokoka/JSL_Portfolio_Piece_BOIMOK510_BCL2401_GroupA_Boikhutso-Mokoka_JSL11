@@ -243,12 +243,9 @@ function toggleSidebar(show) {
   });
 }
 
-function toggleTheme(show) {
-  const isLightTheme =
-    show === "enabled" ||
-    show === true ||
-    elements.themeSwitch.checked === isLightTheme;
-  document.body.classlist.toggle("light-theme", isLightTheme);
+function toggleTheme() {
+  const isLightTheme = document.body.classList.contains("light-theme");
+  document.body.classList.toggle("light-theme");
   localStorage.setItem("light-theme", isLightTheme ? "enabled" : "disabled");
 }
 
